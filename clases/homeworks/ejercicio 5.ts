@@ -6,14 +6,24 @@ class Person {
       this.name = name;
       this.age = age;
     }
+    public getName(): string {
+      return this.name;
+    }
+    public getAge(): number {
+      return this.age;
+    }
   }
   
   class Student extends Person {
-    private regular: boolean;
+    protected regular: boolean;
     
     constructor(name: string, age: number, regular: boolean) {
       super(name, age);
       this.regular = regular;
+    }
+
+    public getRegular(): boolean {
+      return this.regular;
     }
     
     getFullInfo() {
@@ -24,9 +34,9 @@ class Person {
   const student = new Student("Franco", 26, true);
   
   student.getFullInfo(); // "Franco (26 years old) - not regular"
-  student.name; // Property 'name' is protected and only accessible within class 'Person' and its subclasses
-  student.age; // Property 'age' is protected and only accessible within class 'Person' and its subclasses.
-  student.regular; // Property 'regular' is private and only accessible within class 'Student'
+  student.getName; // Property 'name' is protected and only accessible within class 'Person' and its subclasses
+  student.getAge; // Property 'age' is protected and only accessible within class 'Person' and its subclasses.
+  student.getRegular; // Property 'regular' is private and only accessible within class 'Student'
 
 //proba como cambiar los modificadores de atributos de la clase!
   export {}
