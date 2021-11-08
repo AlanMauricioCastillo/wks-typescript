@@ -1,23 +1,17 @@
-import { Response, Request, Router, NextFunction } from "express";
-const {User} = require("../models/User");
+import { Router } from "express";
+
+const {
+  getUser,
+  postUser,
+  deleteUser
+} = require("./controller/user");
 
 const userRoutes = Router();
 
-userRoutes.get("/", (req: Request, res: Response, next: NextFunction) => {
-  User.findAll()
-    .then((users: any) => {
-      res.send(users);
-    })
-    .catch((error: any) => next(error));
-});
+userRoutes.get("/", getUser);
 
-userRoutes.post("/", (req: Request, res: Response, next: NextFunction) => {
-  const user = req.body;
-  User.create(user)
-    .then((createdUser: any) => {
-      res.send(createdUser);
-    })
-    .catch((error: any) => next(error));
-});
+userRoutes.post("/", postUser);
+
+userRoutes.delete("/:id", deleteUser);
 
 export default userRoutes;
